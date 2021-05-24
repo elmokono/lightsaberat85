@@ -13,7 +13,8 @@
 #include <avr/pgmspace.h>
 #include <avr/sleep.h>
 #define adc_disable()  (ADCSRA &= ~(1<<ADEN))
-#include "holagenarosound.h"
+#define adc_enable()  (ADCSRA |= ~(1<<ADEN))
+#include "holagenarosound2.h"
 
 unsigned int p = 0, state = 0;
 int c = 0;
@@ -71,8 +72,7 @@ ISR (TIMER0_COMPA_vect) {
     state = 0;
     p = 0;
     c = -9999;
-  }
+ }
 
   if (c < 0) c++;
-
 }
